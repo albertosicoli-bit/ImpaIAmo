@@ -1,0 +1,1 @@
+.inline-answers{display:grid;gap:.45rem;margin-top:.75rem}.inline-answers button{border:1px solid #b9caee;background:#fff;color:var(--navy);padding:.6rem .75rem;border-radius:10px;text-align:left;cursor:pointer}.inline-answers button.answer-ok{border-color:var(--mint);background:#eafff8}.inline-answers button.answer-no{border-color:var(--coral);background:#fff0f0}

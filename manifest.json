@@ -1,0 +1,11 @@
+{
+  "name":"ImparaIA — Laboratorio AI",
+  "short_name":"ImparaIA",
+  "description":"Missioni interattive per imparare a usare l'intelligenza artificiale in modo critico e sicuro.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f5f7fb",
+  "theme_color":"#172554",
+  "icons":[{"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

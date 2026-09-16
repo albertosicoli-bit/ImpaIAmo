@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#172554">
+  <meta name="description" content="Un laboratorio interattivo per imparare a usare l'intelligenza artificiale con curiosità e senso critico.">
+  <title>ImparaIA — Laboratorio AI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ImparaIA, home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>Impara<span>IA</span></span>
+    </a>
+    <nav aria-label="Navigazione principale">
+      <button class="nav-btn active" data-view="home">Missioni</button>
+      <button class="nav-btn" data-view="lab">Laboratorio</button>
+      <button class="nav-btn" data-view="progress">Progressi</button>
+    </nav>
+    <div class="score-pill" aria-label="Punti esperienza"><span aria-hidden="true">⚡</span><strong id="xpTop">120</strong> XP</div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="view active">
+      <div class="welcome">
+        <div>
+          <p class="eyebrow">IL TUO PERCORSO · 9–11 ANNI</p>
+          <h1>Ciao, esploratore!<br><span>Alleniamo la tua mente.</span></h1>
+          <p>Oggi scoprirai perché anche un’AI può sbagliare. Sei pronto a fare il detective?</p>
+        </div>
+        <div class="level-orbit" aria-label="Livello 3">
+          <span class="orbit-dot"></span>
+          <div><small>LIVELLO</small><strong id="levelNumber">3</strong><span>Esploratore</span></div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel mission-panel" aria-labelledby="today-title">
+          <div class="panel-head">
+            <div><p class="eyebrow">MISSIONE DI OGGI</p><h2 id="today-title">L’AI dice sempre la verità?</h2></div>
+            <span class="time">⏱ 5 min</span>
+          </div>
+          <div class="mission-visual" aria-hidden="true">
+            <div class="magnifier">?</div>
+            <div class="fact-card one">Roma è in Italia <b>✓</b></div>
+            <div class="fact-card two">I polpi hanno 5 cuori <b>?</b></div>
+          </div>
+          <p>Metti alla prova il tuo fiuto: trova l’affermazione sospetta e impara come verificare una risposta.</p>
+          <button class="primary-btn" id="startMission">Inizia la missione <span>→</span></button>
+        </section>
+
+        <aside class="side-stack">
+          <section class="panel streak-card">
+            <div class="streak-icon" aria-hidden="true">🔥</div>
+            <div><p class="eyebrow">SERIE ATTIVA</p><h2><span id="streakDays">4</span> giorni!</h2><p>Una missione oggi mantiene viva la serie.</p></div>
+          </section>
+          <section class="panel path-card">
+            <div class="panel-head"><div><p class="eyebrow">PERCORSO</p><h2>Pensiero critico</h2></div><strong id="pathPercent">40%</strong></div>
+            <div class="progress-track"><span id="pathBar" style="width:40%"></span></div>
+            <div class="path-steps">
+              <span class="done">✓</span><i></i><span class="done">✓</span><i></i><span class="current">3</span><i></i><span>4</span><i></i><span>5</span>
+            </div>
+          </section>
+          <section class="tip-card">
+            <span aria-hidden="true">💡</span>
+            <div><strong>Superpotere del giorno</strong><p>Chiedi sempre all’AI: “Da quale fonte arriva questa informazione?”</p></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="next-section">
+        <div class="section-title"><div><p class="eyebrow">CONTINUA A ESPLORARE</p><h2>Le prossime missioni</h2></div><span>2 di 5 completate</span></div>
+        <div class="lesson-grid">
+          <button class="lesson-card complete" data-lesson="Prompt perfetti"><span class="lesson-icon">✎</span><span><small>COMPLETATA</small><strong>Prompt perfetti</strong><em>Impara a fare domande chiare</em></span><b>✓</b></button>
+          <button class="lesson-card" data-lesson="Detective delle fonti"><span class="lesson-icon coral">⌕</span><span><small>PROSSIMA</small><strong>Detective delle fonti</strong><em>Scopri se una risposta è affidabile</em></span><b>→</b></button>
+          <button class="lesson-card locked" data-lesson="Creatività responsabile"><span class="lesson-icon yellow">✦</span><span><small>BLOCCATA</small><strong>Creatività responsabile</strong><em>Crea rispettando gli altri</em></span><b>🔒</b></button>
+        </div>
+      </section>
+    </section>
+
+    <section id="lab" class="view">
+      <div class="view-heading"><p class="eyebrow">LABORATORIO</p><h1>Costruisci un prompt migliore</h1><p>Scrivi una richiesta: il tutor ti aiuterà a renderla più chiara senza farlo al posto tuo.</p></div>
+      <div class="lab-grid">
+        <section class="panel prompt-workbench">
+          <label for="promptInput">La tua richiesta all’AI</label>
+          <textarea id="promptInput" maxlength="300" placeholder="Esempio: Parlami dei vulcani"></textarea>
+          <div class="input-foot"><span id="charCount">0 / 300</span><button id="analyzePrompt" class="primary-btn">Analizza il prompt</button></div>
+        </section>
+        <section class="panel coach-card" aria-live="polite">
+          <div class="coach-head"><span>✦</span><div><small>TUTOR GUIDA</small><strong>Nora</strong></div></div>
+          <div id="coachMessage" class="coach-message">Inserisci una domanda. Controllerò se hai indicato <b>argomento</b>, <b>obiettivo</b>, <b>formato</b> e <b>livello</b>.</div>
+          <div class="prompt-checks" id="promptChecks">
+            <span data-check="topic">Argomento</span><span data-check="goal">Obiettivo</span><span data-check="format">Formato</span><span data-check="level">Livello</span>
+          </div>
+        </section>
+      </div>
+      <section class="panel examples-panel">
+        <p class="eyebrow">PROVA UN ESEMPIO</p>
+        <div class="example-grid">
+          <button data-prompt="Spiegami come funzionano i vulcani in 5 punti, usando parole adatte alla quinta elementare.">🌋 Scienze</button>
+          <button data-prompt="Fammi 4 domande a risposta multipla sull'antica Roma per ripassare la prima media.">🏛️ Storia</button>
+          <button data-prompt="Aiutami a inventare l'inizio di una storia misteriosa di 100 parole, senza scrivere il finale.">📚 Italiano</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="progress" class="view">
+      <div class="view-heading"><p class="eyebrow">IL TUO CAMMINO</p><h1>Piccoli passi, grandi scoperte</h1><p>I risultati restano salvati su questo dispositivo.</p></div>
+      <div class="stats-grid">
+        <div class="stat panel"><span>⚡</span><strong id="xpStat">120</strong><small>XP TOTALI</small></div>
+        <div class="stat panel"><span>✓</span><strong id="missionsStat">2</strong><small>MISSIONI</small></div>
+        <div class="stat panel"><span>🔥</span><strong id="streakStat">4</strong><small>GIORNI DI FILA</small></div>
+      </div>
+      <section class="panel badge-panel">
+        <div class="panel-head"><div><p class="eyebrow">DISTINTIVI</p><h2>La tua collezione</h2></div></div>
+        <div class="badges">
+          <div class="badge earned"><span>⌕</span><strong>Curioso</strong><small>Prima missione</small></div>
+          <div class="badge earned"><span>✎</span><strong>Promptista</strong><small>Primo buon prompt</small></div>
+          <div class="badge"><span>?</span><strong>Detective</strong><small>Completa la missione</small></div>
+          <div class="badge"><span>★</span><strong>Campione</strong><small>Raggiungi 300 XP</small></div>
+        </div>
+      </section>
+      <button class="text-btn" id="resetProgress">Azzera i progressi di prova</button>
+    </section>
+  </main>
+
+  <div class="modal" id="missionModal" hidden>
+    <div class="modal-backdrop" data-close="true"></div>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="missionTitle">
+      <button class="close-btn" aria-label="Chiudi" data-close="true">×</button>
+      <div id="missionStep"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
