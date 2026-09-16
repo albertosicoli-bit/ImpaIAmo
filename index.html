@@ -11,8 +11,9 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="agents.css">
   <link rel="stylesheet" href="exercise.css">
+  <link rel="stylesheet" href="profile.css">
 </head>
-<body>
+<body class="creating-profile">
   <a class="skip-link" href="#main">Vai al contenuto</a>
   <header class="topbar">
     <a class="brand" href="#" aria-label="ImparaIA, home">
@@ -26,14 +27,46 @@
       <button class="nav-btn" data-view="progress">Progressi</button>
     </nav>
     <div class="score-pill" aria-label="Punti esperienza"><span aria-hidden="true">⚡</span><strong id="xpTop">120</strong> XP</div>
+    <button id="editProfile" class="profile-pill" hidden><span class="character-art fox" aria-hidden="true"></span><span id="profileLabel">Il mio personaggio</span></button>
   </header>
 
   <main id="main">
-    <section id="home" class="view active">
+    <section id="signup" class="view active" aria-labelledby="signupTitle">
+      <div class="signup-heading"><p class="eyebrow">BENVENUTO NELLA SQUADRA IMPARAIA</p><h1 id="signupTitle">La tua avventura<br>comincia da <span>te.</span></h1><p>Scegli un amico, inventa un soprannome e preparati a scoprire l’AI!</p></div>
+      <div class="signup-layout">
+        <aside class="character-preview" id="characterPreview">
+          <span class="preview-kicker">IL TUO PERSONAGGIO</span>
+          <div class="character-art fox preview-art" id="previewArt" role="img" aria-label="Volpe esploratrice"></div>
+          <h2 id="previewName">Piccolo esploratore</h2><p id="characterStory">Una volpe curiosa: nessuna domanda è troppo piccola!</p>
+          <span class="preview-level">✦ Livello 1 · Pronto a partire</span>
+        </aside>
+        <form class="panel signup-form" id="profileForm">
+          <div class="form-section"><label for="nickname">1. Come ti chiamerai qui?</label><input id="nickname" name="nickname" type="text" maxlength="20" minlength="2" autocomplete="off" placeholder="Es. AstroBlu" required aria-describedby="nicknameHint"><small id="nicknameHint">Un soprannome inventato, non il tuo nome completo.</small></div>
+          <div class="form-section"><label for="profileSchool">2. Qual è il tuo percorso?</label><select id="profileSchool" name="school"><option value="primaria">Scuola primaria</option><option value="media">Scuola media</option></select></div>
+          <fieldset class="form-section"><legend>3. Scegli il tuo amico</legend><div class="character-choices">
+            <label class="character-choice"><input type="radio" name="character" value="fox" checked><span class="character-art fox" aria-hidden="true"></span><strong>Volpe</strong></label>
+            <label class="character-choice"><input type="radio" name="character" value="robot"><span class="character-art robot" aria-hidden="true"></span><strong>Robot</strong></label>
+            <label class="character-choice"><input type="radio" name="character" value="owl"><span class="character-art owl" aria-hidden="true"></span><strong>Gufo</strong></label>
+            <label class="character-choice"><input type="radio" name="character" value="dragon"><span class="character-art dragon" aria-hidden="true"></span><strong>Draghetto</strong></label>
+          </div></fieldset>
+          <fieldset class="form-section"><legend>4. Il tuo colore preferito</legend><div class="color-choices">
+            <label style="--swatch:#2563eb"><input type="radio" name="color" value="blue" checked><span>Blu</span></label>
+            <label style="--swatch:#16876d"><input type="radio" name="color" value="mint"><span>Verde</span></label>
+            <label style="--swatch:#7c3aed"><input type="radio" name="color" value="purple"><span>Viola</span></label>
+            <label style="--swatch:#c94a32"><input type="radio" name="color" value="coral"><span>Corallo</span></label>
+          </div></fieldset>
+          <label class="adult-check"><input id="adultCheck" type="checkbox" required><span>Sto creando il profilo insieme a un adulto.</span></label>
+          <p id="profileError" class="form-error" role="alert" hidden></p>
+          <div class="signup-actions"><button id="saveProfile" type="submit" class="primary-btn">Crea il personaggio e inizia →</button><button id="cancelProfile" type="button" class="secondary-btn" hidden>Annulla</button></div>
+          <p class="local-profile-note">🛡️ Profilo solo su questo dispositivo. Non chiediamo email, password o data di nascita. Non è un account online.</p>
+        </form>
+      </div>
+    </section>
+    <section id="home" class="view">
       <div class="welcome">
         <div>
-          <p class="eyebrow">IL TUO PERCORSO · 9–11 ANNI</p>
-          <h1>Ciao, esploratore!<br><span>Alleniamo la tua mente.</span></h1>
+          <p class="eyebrow" id="welcomePath">IL TUO PERCORSO</p>
+          <h1><span id="welcomeName">Ciao, esploratore!</span><br><span>Alleniamo la tua mente.</span></h1>
           <p>Oggi scoprirai perché anche un’AI può sbagliare. Sei pronto a fare il detective?</p>
         </div>
         <div class="level-orbit" aria-label="Livello 3">
@@ -55,6 +88,7 @@
           </div>
           <p>Metti alla prova il tuo fiuto: trova l’affermazione sospetta e impara come verificare una risposta.</p>
           <button class="primary-btn" id="startMission">Inizia la missione <span>→</span></button>
+          <button class="restart-btn" id="restartMission">↻ Inizia la missione da zero</button>
         </section>
 
         <aside class="side-stack">
@@ -171,20 +205,27 @@
         <div><p class="eyebrow">ANALISTA DEI PROGRESSI</p><h2 id="insightTitle">Ottimo avvio nel pensiero critico</h2><p id="insightText">Il prossimo passo consigliato è completare la missione “L’AI dice sempre la verità?”.</p></div>
         <button class="primary-btn" id="goRecommended">Vai all’attività</button>
       </section>
-      <button class="text-btn" id="resetProgress">Azzera i progressi di prova</button>
+      <button class="text-btn" id="resetProgress">Azzera tutti i progressi</button>
     </section>
   </main>
 
   <div class="modal" id="missionModal" hidden>
     <div class="modal-backdrop" data-close="true"></div>
-    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="missionTitle">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="missionTitle" tabindex="-1">
       <button class="close-btn" aria-label="Chiudi" data-close="true">×</button>
       <div id="missionStep"></div>
     </section>
   </div>
+  <dialog id="resetDialog" class="reset-dialog" aria-labelledby="resetTitle" aria-describedby="resetDescription">
+    <div class="reset-symbol" aria-hidden="true">↻</div>
+    <h2 id="resetTitle">Sei sicuro di voler iniziare da zero?</h2>
+    <p id="resetDescription"></p>
+    <div class="reset-actions"><button id="cancelReset" class="secondary-btn">No, continua</button><button id="confirmReset" class="primary-btn">Sì, inizia da zero</button></div>
+  </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
   <script src="agents.js"></script>
+  <script src="profile.js"></script>
 </body>
 </html>
