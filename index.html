@@ -9,6 +9,8 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="agents.css">
+  <link rel="stylesheet" href="exercise.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Vai al contenuto</a>
@@ -19,6 +21,7 @@
     </a>
     <nav aria-label="Navigazione principale">
       <button class="nav-btn active" data-view="home">Missioni</button>
+      <button class="nav-btn" data-view="tutor">Tutor AI</button>
       <button class="nav-btn" data-view="lab">Laboratorio</button>
       <button class="nav-btn" data-view="progress">Progressi</button>
     </nav>
@@ -83,6 +86,45 @@
       </section>
     </section>
 
+    <section id="tutor" class="view">
+      <div class="view-heading tutor-heading">
+        <div><p class="eyebrow">SQUADRA IMPARAIA · MODALITÀ DEMO</p><h1>Chiedi, ragiona, migliora</h1><p>Il coordinatore sceglie l’agente giusto. Il tutor ti accompagna con indizi, senza svolgere il compito al posto tuo.</p></div>
+        <label class="age-select">Classe
+          <select id="schoolLevel" aria-label="Seleziona la classe"><option value="primaria">4ª–5ª primaria</option><option value="media" selected>1ª–3ª media</option></select>
+        </label>
+      </div>
+      <div class="tutor-layout">
+        <aside class="panel agent-console" aria-label="Agenti disponibili">
+          <div class="agent-console-head"><span class="pulse"></span><div><small>COORDINATORE</small><strong>Orione</strong></div></div>
+          <p id="routeMessage">Pronto a scegliere l’agente più adatto.</p>
+          <div class="agent-list">
+            <div class="agent-row" data-agent="tutor"><span>🧭</span><div><strong>Tutor didattico</strong><small>Spiega con domande e indizi</small></div><i></i></div>
+            <div class="agent-row" data-agent="exercise"><span>🧩</span><div><strong>Generatore esercizi</strong><small>Crea sfide su misura</small></div><i></i></div>
+            <div class="agent-row" data-agent="corrector"><span>✓</span><div><strong>Correttore</strong><small>Controlla e fa riflettere</small></div><i></i></div>
+            <div class="agent-row" data-agent="safety"><span>🛡️</span><div><strong>Sicurezza</strong><small>Protegge dati e conversazione</small></div><i class="always-on"></i></div>
+            <div class="agent-row" data-agent="analyst"><span>📈</span><div><strong>Analista progressi</strong><small>Suggerisce il prossimo passo</small></div><i></i></div>
+          </div>
+        </aside>
+        <section class="panel chat-panel">
+          <div class="chat-top"><div><span class="nora-avatar">✦</span><div><strong>Squadra ImparaIA</strong><small>Ambiente protetto · nessun dato inviato</small></div></div><button id="clearChat" class="icon-btn" aria-label="Cancella conversazione">↻</button></div>
+          <div class="chat-stream" id="chatStream" aria-live="polite">
+            <div class="chat-message ai"><span>✦</span><div><small>ORIONE · COORDINATORE</small><p>Ciao! Dimmi cosa vuoi capire, esercitare o correggere. Non inserire nome, indirizzo, scuola o altri dati personali.</p></div></div>
+          </div>
+          <div class="quick-actions" aria-label="Richieste rapide">
+            <button data-quick="Non ho capito le frazioni equivalenti">💡 Spiegami</button>
+            <button data-quick="Creami un esercizio sui verbi">🧩 Allenami</button>
+            <button data-quick="Correggi questa risposta: Roma fu fondata nel 753 a.C.">✓ Correggimi</button>
+          </div>
+          <form class="chat-composer" id="chatForm">
+            <label class="sr-only" for="chatInput">Scrivi al tutor</label>
+            <textarea id="chatInput" rows="2" maxlength="400" placeholder="Per esempio: aiutami a capire le frazioni…" required></textarea>
+            <button class="send-btn" type="submit" aria-label="Invia">↑</button>
+          </form>
+        </section>
+      </div>
+      <section class="privacy-note"><span>🛡️</span><p><strong>Prototipo sicuro:</strong> le risposte sono generate sul dispositivo da scenari didattici predefiniti. Nessun messaggio viene inviato online.</p></section>
+    </section>
+
     <section id="lab" class="view">
       <div class="view-heading"><p class="eyebrow">LABORATORIO</p><h1>Costruisci un prompt migliore</h1><p>Scrivi una richiesta: il tutor ti aiuterà a renderla più chiara senza farlo al posto tuo.</p></div>
       <div class="lab-grid">
@@ -125,6 +167,10 @@
           <div class="badge"><span>★</span><strong>Campione</strong><small>Raggiungi 300 XP</small></div>
         </div>
       </section>
+      <section class="panel insight-panel">
+        <div><p class="eyebrow">ANALISTA DEI PROGRESSI</p><h2 id="insightTitle">Ottimo avvio nel pensiero critico</h2><p id="insightText">Il prossimo passo consigliato è completare la missione “L’AI dice sempre la verità?”.</p></div>
+        <button class="primary-btn" id="goRecommended">Vai all’attività</button>
+      </section>
       <button class="text-btn" id="resetProgress">Azzera i progressi di prova</button>
     </section>
   </main>
@@ -139,5 +185,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
+  <script src="agents.js"></script>
 </body>
 </html>

@@ -20,7 +20,10 @@ Non servono database, account o chiavi API. I progressi sono memorizzati nel bro
 - Punti XP, badge e progressi persistenti.
 - Navigazione responsive per telefono, tablet e computer.
 - Installazione come PWA e utilizzo offline dopo la prima apertura.
+- Coordinatore che instrada le richieste verso cinque agenti educativi.
+- Tutor socratico, esercizi interattivi, correzione e analisi dei progressi.
+- Controllo locale dei dati personali e delle richieste non sicure.
 
 ## Nota importante
 
-Il tutor è simulato e non invia dati a servizi esterni. Per collegare un modello AI reale servirà un backend protetto: una chiave API non deve mai essere inserita nel codice pubblico del sito.
+La squadra multi-agente opera in modalità dimostrativa e non invia dati a servizi esterni. Il file `agents.js` contiene il coordinatore e i cinque agenti basati su scenari didattici. Per collegare un modello AI reale servirà un backend protetto: una chiave API non deve mai essere inserita nel codice pubblico del sito.
